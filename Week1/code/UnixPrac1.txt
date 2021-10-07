@@ -1,0 +1,29 @@
+#UNIX and Linux practical week1
+# Author: cc2320@ic.ac.uk
+# Date: 6 Oct 2021
+
+#To count how many lines are there in each fasta file
+
+wc -l ../data/fasta/*.fasta
+
+#To print everything from 2nd lines onwards for E.coli genome
+
+tail -n +2 ../data/fasta/E.coli.fasta
+
+#To count the sequence length of E.coli genome
+#remove the first line containing '>' first and pipe 'wc' command to count the actual sequence
+
+
+tail -n +2 ../data/fasta/E.coli.fasta | wc -m
+
+#To count the pattern 'ATGC' in the E.coli genome
+#remove the first line then pipe the tr command to remove the new line characters before finding the pattern using grep with option to print the matched pattern in a unique line and count
+
+tail -n +2 ../data/fasta/E.coli.fasta| tr -d '\n' | grep -o "ATGC" | wc -l
+
+#To compute the AT/GC ratio
+#Use bc command because it could display an output in decimal
+
+echo "scale=3;" | bc <<< "$(grep -o "A\|T" ../data/fasta/E.coli.fasta | wc -l) / $(grep -o "C\|G" ../data/fasta/E.coli.fasta | wc -l)"
+
+#exit
