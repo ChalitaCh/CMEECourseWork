@@ -1,5 +1,5 @@
 #UNIX and Linux practical week1
-# Author: cc2320@ic.ac.uk
+# Author: Chalita Chomkatekaew chalita.chomkatekaew20@imperial.ac.uk
 # Date: 6 Oct 2021
 
 #To count how many lines are there in each fasta file

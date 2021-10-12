@@ -7,6 +7,11 @@
 # Date: 6 Oct 2021
 
 echo "Creating a space separeted text file of $1 ....."
-cat $1 | tr -u "," " " >> ../results/${1/.csv/}.txt
-echo "Done"
-exit 
+if [ $# -eq 0 ]
+then
+	echo "Please supply a .csv file as an input"
+else
+	cat $1 | tr -u "," " " >> ${1/.csv/}.txt
+	echo "Done"
+	exit
+fi 

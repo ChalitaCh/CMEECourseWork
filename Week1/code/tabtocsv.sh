@@ -8,6 +8,11 @@
 # Date: Oct 2021
 
 echo "Creating a comma delimited version of $1 ..."
-cat $1 | tr -s "\t" ","  >> ${1/.txt/}.csv
-echo "Done!"
-exit
+if [ $# -eq 0 ]
+then
+	echo "Please supply a tab delimited file as an input"
+else
+	cat $1 | tr -s "\t" ","  >> ${1/.txt/}.csv
+	echo "Done!"
+	exit
+fi
