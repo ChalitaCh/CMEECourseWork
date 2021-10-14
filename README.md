@@ -4,7 +4,7 @@ This repository contains the coursework for my MSc CMEE at Imperial College Lond
 
 ## Author
 
-Chalita Chomkatekaew 
+[Chalita Chomkatekaew](https://orcid.org/0000-0003-2543-1045/) 
 
 ## Week 1
 

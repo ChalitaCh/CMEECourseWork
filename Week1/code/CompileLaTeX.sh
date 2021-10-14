@@ -1,10 +1,10 @@
 #!/bin/bash
 
 pdflatex $1
-bibtex ${1/.tex/}
+bibtex ${1/.*/}
 pdflatex $1
 pdflatex $1
-evince ${1/.tex/}.pdf &
+evince ${1/.*/}.pdf &
 
 
 ## Cleanup

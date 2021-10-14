@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Chalita Chomkatekaew cc2320@ic.ac.uk
+# Author: Chalita Chomkatekaew chalita.chomkatekaew20@imperial.ac.uk
 # Script: csvtospace.sh
 # Description: substitute the commas in the file with space
 # Saves the output into the text file with space separated values
@@ -11,7 +11,7 @@ if [ $# -eq 0 ]
 then
 	echo "Please supply a .csv file as an input"
 else
-	cat $1 | tr -u "," " " >> ${1/.csv/}.txt
+	cat $1 | tr "," " " >> ${1/.csv/}.txt
 	echo "Done"
 	exit
 fi 
