@@ -12,7 +12,7 @@ if [ $# -eq 0 ]
 then
 	echo "Please supply a tab delimited file as an input"
 else
-	cat $1 | tr -s "\t" ","  >> ${1/.txt/}.csv
+	cat $1 | tr -s "\t" ","  >> ${1%.*}.csv
 	echo "Done!"
 	exit
 fi

@@ -11,7 +11,7 @@ if [ $# -eq 0 ]
 then
 	echo "Please supply a .csv file as an input"
 else
-	cat $1 | tr "," " " >> ${1/.csv/}.txt
+	cat $1 | tr "," " " >> ${1%.*}.txt
 	echo "Done"
 	exit
 fi 
