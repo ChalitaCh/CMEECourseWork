@@ -10,6 +10,10 @@ This repository contains the coursework for my MSc CMEE at Imperial College Lond
 
 Introduction to the UNIX and Linux, shell scripting and LaTeX. Code folder contains the shell utility scripts, where the data contains the example data files.
 
+## Week2
+
+Introduction to the basic Python syntax and data structure. How to write and run Python script, together with the control flow tools and debugging the Python script.
+ 
 
 
 

@@ -1,2 +1,7 @@
+#The files with following extension will not be push into the git repository
+
 *~ 
 *.tmp
+
+#MAC weird system file
+.DS_Store
