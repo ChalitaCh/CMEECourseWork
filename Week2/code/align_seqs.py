@@ -81,7 +81,7 @@ print(s1)
 print("Best score:", my_best_score)
 
 output = open("../results/best_align_seq_result.txt", "w")
-output.write("The best alignment" + "\n" + str(my_best_align) + "\n" + str(s1) + "\n" + "Best score:" + str(my_best_score))
+output.write("The best alignment" + "\n" + my_best_align + "\n" + s1 + "\n" + "Best score:" + my_best_score)
 output.close()
 
 # Test the function with some example starting points:
