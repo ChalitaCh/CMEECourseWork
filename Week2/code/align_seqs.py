@@ -16,32 +16,21 @@ import csv
 #seq1 = "CAATTCGGAT"
 
 ## import the input sequences from a csv file
-temp = [] #empty list to store the input sequences
-with open('../data/Exampleseq.csv', 'r') as seq:
+print("Aligning the DNA sequences....")
+
+x = "../data/Exampleseq.csv"
+temp = []
+with open(x, "r") as seq:
     csvseq = csv.reader(seq)
     for row in csvseq:
         temp.append(row[1])
-        
 
+print()
 print("This is a first input sequence: %s \n This is a second input sequence: %s" % (temp[0], temp[1]) )
-
-# Assign the sequences in the file to a variable
+print()
 
 seq1 = temp[0]
 seq2 = temp[1]
-
-# Assign the longer sequence s1, and the shorter to s2
-# l1 is length of the longest, l2 that of the shortest
-
-l1 = len(seq1)
-l2 = len(seq2)
-if l1 >= l2:
-    s1 = seq1
-    s2 = seq2
-else:
-    s1 = seq2
-    s2 = seq1
-    l1, l2 = l2, l1 # swap the two lengths
 
 ## function
 # A function that computes a score by returning the number of matches starting
@@ -65,10 +54,23 @@ def calculate_score(s1, s2, l1, l2, startpoint): # it will run with the startpoi
 
     return score
 
-# now try to find the best match (highest score) for the two sequences
+# Assign the longer sequence s1, and the shorter to s2
+# l1 is length of the longest, l2 that of the shortest
+
+l1 = len(seq1)
+l2 = len(seq2)
+if l1 >= l2:
+    s1 = seq1
+    s2 = seq2
+else:
+    s1 = seq2
+    s2 = seq1
+    l1, l2 = l2, l1 # swap the two lengths
+
+    # now try to find the best match (highest score) for the two sequences
 my_best_align = None
 my_best_score = -1
-
+    
 for i in range(l1): # Note that you just take the last alignment with the highest score
     z = calculate_score(s1, s2, l1, l2, i)
     if z > my_best_score:
@@ -78,15 +80,16 @@ print(my_best_align)
 print(s1)
 print("Best score:", my_best_score)
 
+output = open("../results/best_align_seq_result.txt", "w")
+output.write("The best alignment" + "\n" + str(my_best_align) + "\n" + str(s1) + "\n" + "Best score:" + str(my_best_score))
+output.close()
+
 # Test the function with some example starting points:
 def main(argv):
-    print(calculate_score(s1, s2, l1, l2, 0))
-    print(calculate_score(s1, s2, l1, l2, 1))
-    print(calculate_score(s1, s2, l1, l2, 5))
-
-    return 0
+    print("Done!")
+    return None
 
 if (__name__ == "__main__"):
     status = main(sys.argv)
-    sys.exit("Finished sequences alignment!")
+    sys.exit(status)
 
