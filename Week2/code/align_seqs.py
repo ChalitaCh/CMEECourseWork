@@ -18,12 +18,15 @@ import csv
 ## import the input sequences from a csv file
 print("Aligning the DNA sequences....")
 
-x = "../data/Exampleseq.csv"
-temp = []
+x = "../data/Exampleseq.csv" #read in the default sequences
+temp = [] # Create an empty space for the sequence to be stored in
 with open(x, "r") as seq:
     csvseq = csv.reader(seq)
     for row in csvseq:
         temp.append(row[1])
+
+
+#Define the sequence seq1 and seq2 for the following analyses
 
 print()
 print("This is a first input sequence: %s \n This is a second input sequence: %s" % (temp[0], temp[1]) )
@@ -74,17 +77,18 @@ my_best_score = -1
 for i in range(l1): # Note that you just take the last alignment with the highest score
     z = calculate_score(s1, s2, l1, l2, i)
     if z > my_best_score:
-        my_best_align = "." * i + s2 # think about what this is doing!
+        my_best_align = "." * i + s2 # Print position of the short sequence in corresponding to longer sequence when at the best alignment score
         my_best_score = z 
 print(my_best_align)
 print(s1)
 print("Best score:", my_best_score)
 
+# Export the output to a file "best_align_seq_result.txt"
 output = open("../results/best_align_seq_result.txt", "w")
 output.write("The best alignment" + "\n" + my_best_align + "\n" + s1 + "\n" + "Best score:" + my_best_score)
 output.close()
 
-# Test the function with some example starting points:
+
 def main(argv):
     print("Done!")
     return None
