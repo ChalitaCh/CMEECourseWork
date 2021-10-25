@@ -31,4 +31,6 @@ def read_table():
         print("Mass: ", name[2])
     return None
 
+print(read_table())
+
 test = [print("Latin name: %s \n Common name: %s \n Mass: %s" % (name[0], name[1], name[2]))for name in birds]
