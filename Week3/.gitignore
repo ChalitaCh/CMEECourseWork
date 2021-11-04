@@ -1,0 +1,20 @@
+# History files
+.Rhistory
+.Rapp.history
+
+#any temp files
+
+*~
+*.tmp
+
+#.DS_Store
+
+.DS_Store
+
+# Session Data files in code directory
+
+code/.RData
+
+#Latex directory for test
+
+Latex/
