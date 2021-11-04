@@ -21,6 +21,14 @@ MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
 
 MyDF$Type.of.feeding.interaction <- as.factor(MyDF$Type.of.feeding.interaction)
 
+#Convert the Prey mass in mg to g and create a new prey mass unit column instead
+
+MyDF <- MyDF %>% mutate(Prey.mass = case_when(Prey.mass.unit == "mg" ~ Prey.mass/1000,
+                                              Prey.mass.unit == "g" ~ Prey.mass)) %>%
+  mutate(New.Prey.mass.unit = case_when(Prey.mass.unit == "mg" ~ "g",
+                                        Prey.mass.unit == "g" ~ "g")) %>%
+  select(-c('Prey.mass.unit'))
+
 #ratio between the log prey mass over log predator mass
 
 

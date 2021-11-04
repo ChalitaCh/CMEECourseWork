@@ -14,6 +14,9 @@ Introduction to the UNIX and Linux, shell scripting and LaTeX. Code folder conta
 
 Introduction to the basic Python syntax and data structure. How to write and run Python script, together with the control flow tools and debugging the Python script.
  
+## Week 3
+
+Introduction to the R, statistical software. This week, we explored the basic R syntax, Priciples of data wrangling and exploration. Generate publication quality figures, Data visualisation as well as how to find and fix errors in R code using debugging. 
 
 
 
