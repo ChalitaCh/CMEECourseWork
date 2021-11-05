@@ -27,7 +27,6 @@ All the scripts used Mac OS Big Sur version 11.6. A comprehensive list of all fi
 - boilerplate.R - An example of a boilerplate in R
 - break.R - A script illustrates how to break from a loop in R
 - browse.R
-- ComplieLaTeX.sh - A shell script to complie LaTeX file, and to remove the rubbish files. The script will first run the Florida_warming.R first to ensure the figures produced and no error when compiling.
 - control_flow.R - An example script of if and for condition loops
 - DataWrang.R - A script illustrates how to perform data wrangling
 - DataWrangTidy.R - Data wrangling using Tidyverse package
