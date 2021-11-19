@@ -18,4 +18,4 @@ sandbox/
 
 # remove the Jupyter notebook checkpoint folder
 
-.ipynb_checkpoints/
+.ipynb_checkpoints
