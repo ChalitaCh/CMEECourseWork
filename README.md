@@ -16,7 +16,11 @@ Introduction to the basic Python syntax and data structure. How to write and run
  
 ## Week 3
 
-Introduction to the R, statistical software. This week, we explored the basic R syntax, Priciples of data wrangling and exploration. Generate publication quality figures, Data visualisation as well as how to find and fix errors in R code using debugging. 
+Introduction to the R, statistical software. This week, we explored the basic R syntax, Priciples of data wrangling and exploration. Generate publication quality figures, Data visualisation as well as how to find and fix errors in R code using debugging.
+
+## Week 7
+
+This week, we will look at how Python programming can be used in numerical computing, using numpu and scipy packages. The workflow for more reproducible and automated data analyses across R and Python using subprocess module, followed by the introduction into Jupyter notebook.
 
 
 

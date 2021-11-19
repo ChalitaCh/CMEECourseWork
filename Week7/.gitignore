@@ -1,0 +1,17 @@
+# Byte-compiled/optimised/ DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+#any temp files
+
+*~
+*.tmp
+
+#.DS_Store
+
+.DS_Store
+
+# remove other scripts
+
+sandbox/
