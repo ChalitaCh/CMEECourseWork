@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+
+"""
+This script is to illustrate the profiling in Python by comparing
+two methods in joining/appending the strings. The code to profile the script is
+run -p the_name_of_script.py
+"""
+
+__author__ = 'Chalita Chomkatekaew chalita.chomkatekaew20@ic.ac.uk'
+__version__ = '0.0.1'
+
 def my_squares(iters):
     out = []
     for i in range(iters):
