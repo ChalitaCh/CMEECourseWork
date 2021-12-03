@@ -1,0 +1,196 @@
+#Data visualisation and figure plottings
+
+rm(list = ls())
+#setwd("CMEECourseWork/Miniproject/code/")
+
+#loaded the require package
+
+require(minpack.lm)
+require(tidyverse)
+require(stringr)
+require(ggplot2)
+require(viridisLite)
+require(viridis)
+require(gridExtra)
+require(grid)
+source("Model_functions.R")
+
+#load the dataset
+
+data <- read.csv("../results/GrowthStatSummary.csv")
+overall <- read.csv("../results/Overall_models.csv")
+fit_parameter <- read.csv("../results/Fitted_parameters.csv")
+data_raw <- read.csv("../results/GrowthDataClean.csv")
+
+#Figure plotting 
+
+#Plot an example bacterial population growth 
+
+#Simulate the example dataset
+
+t <- seq(0, 24, 2)
+N <- c(52500, 53000, 58000, 125000, 485000, 1500000, 3120000, 4820000, 5770000 ,5970000, 6030000, 6040000, 6045000)
+t
+d <- data.frame(t, N)
+names(d) <- c("Time", "N")
+
+
+#Trying to find the intercept and the slope to plot the gradient line
+# test <- lm(N ~ Time , data = d[d$Time > 7 & d$Time < 15,])
+# summary(test)
+
+#########Figure 1 ##########
+
+Figure1 <- ggplot(d, aes(x = Time, y = N)) + 
+  geom_point(size = 3) +
+  geom_line() +
+  xlim(0, 26)+
+  annotate("text", x = c(3, 7, 22), y = c(400500, 3120000, 6500000),
+           label = c("Lag phase", "Expo phase", "Stationary phase")) +
+  geom_hline(yintercept=6000000, color="red") + 
+  geom_abline(slope = 731250, intercept = -5562500, color = "blue" ) +
+  labs(x = "Time", y = "Population size N",
+       title = "An example of the idea growth curve") +
+  theme_bw() +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        aspect.ratio = 1 )
+
+ggsave("../results/Figure_1.pdf", plot = Figure1,
+       width = 29.7, height = 21.0, units = "cm")
+
+#########Figure 2 ##########
+
+
+BEST <- overall %>%
+  select(Models, N.AIC, N.BIC) %>%
+  pivot_longer(cols = -c(1)) %>%
+  group_by(Models) %>%
+  mutate(Models = factor(Models, levels = c("Logistic","Gompertz", "Quadratic","Cubic"))) %>%
+  ggplot(aes(x = Models,y = value ,fill = name))+
+  geom_bar(stat = "identity", position = "Dodge") +
+  scale_fill_viridis(discrete = TRUE, alpha = 0.8, labels = c("AIC" ,"BIC")) +
+  labs(x = "Models",
+       y = "Number",
+       title = "A) Distribution of best models by minimum AICc and BIC",
+       fill = "Measurement type") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        aspect.ratio = 1)
+
+PROB <- data %>%
+  mutate(Weight_Model = factor(Weight_Model, levels = c("Logistic","Gompertz", "Quadratic","Cubic"))) %>%
+  ggplot(aes(x = Weight_Model, y = normal_prob, fill = Weight_Model))+
+  geom_boxplot() +
+  scale_y_continuous(breaks = seq(0,1,0.2), limits = c(0,1)) +
+  scale_fill_viridis(discrete = TRUE, alpha = 0.8) +
+  labs(x = "Models",
+       y = "Normalised probability of Wi(AIC)")+
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        aspect.ratio = 1) +
+  ggtitle("B) The normalised probablity of models' weighted AICc")
+
+Figure_2 <- grid.arrange(BEST, PROB, ncol= 2)
+
+ggsave("../results/Figure_2.pdf", plot = Figure_2,
+       width = 29.7, height = 21.0, units = "cm")
+
+#########Figure 3 ##########
+
+TEMP <- data %>%
+  mutate(Weight_Model = factor(Weight_Model, levels = c("Logistic","Gompertz", "Quadratic","Cubic"))) %>%
+  mutate(Temperature = cut_width(Temp, width = 10, boundary = 0)) %>%
+  group_by(Weight_Model, Temperature) %>%
+  count() %>%
+  ggplot(aes(x = Temperature, y = n, fill = Weight_Model)) +
+  scale_fill_viridis(discrete = TRUE, option = "E") +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs( x = "Temperature",
+        y = "Number",
+        title = "Distribution of best model selected in different temperatures",
+        fill = "Models") +
+  theme_bw() +
+  theme(aspect.ratio = 1)
+
+ggsave("../results/Figure_3.pdf", plot = TEMP,
+       width = 29.7, height = 21.0, units = "cm")
+
+
+#########Model Fitness visualisation##########
+
+# select_data <- seq(13,18,1)
+# select_data <- as.integer(select_data)
+# 
+# data_raw$logPopBio <- log10(data_raw$PopBio)
+# 
+# plot_df <- data.frame(timepoints = numeric(),
+#                       points = numeric(),
+#                       ID = numeric(),
+#                       Temp = numeric(),
+#                       model = character())
+# for (i in select_data){
+#   parameters <- subset(fit_parameter, fit_parameter$ID == i)
+#   timepoints <- seq(min(data_raw$Time[data_raw$ID == i]), max(data_raw$Time[data_raw$ID == i]), 1)
+#   points <- gompertz(t=timepoints,
+#                      rmax = parameters$GomRmax[1],
+#                      K = parameters$GomK[1],
+#                      N0 = parameters$GomN0[1],
+#                      t_lag = parameters$Gomt_lag[1])
+#   tempdf <- data.frame(timepoints, points)
+#   tempdf$ID <- c(i)
+#   tempdf$Temp <- unique(parameters$Temp)
+#   tempdf$model <- "Gompertz model"
+#   plot_df <- rbind(plot_df, tempdf)
+# }
+# 
+# for (i in select_data){
+#   parameters <- subset(fit_parameter, fit_parameter$ID == i)
+#   timepoints <- seq(min(data_raw$Time[data_raw$ID == i]), max(data_raw$Time[data_raw$ID == i]), 1)
+#   points <- logistic(t=timepoints,
+#                      rmax = parameters$LogRmax[1],
+#                      K = parameters$LogK[1],
+#                      N0 = parameters$LogN0[1])
+#   tempdf <- data.frame(timepoints, points)
+#   tempdf$ID <- c(i)
+#   tempdf$Temp <- unique(parameters$Temp)
+#   tempdf$model <- "Logistic model"
+#   plot_df <- rbind(plot_df, tempdf)
+# }
+# 
+# for (i in select_data){
+#   parameters <- subset(fit_parameter, fit_parameter$ID == i)
+#   timepoints <- seq(min(data_raw$Time[data_raw$ID == i]), max(data_raw$Time[data_raw$ID == i]), 1)
+#   points <- quadratic(x = timepoints,
+#                       c = parameters$Qua_intercept[1],
+#                       a = parameters$Qua_a[1],
+#                       b = parameters$Qua_b[1])
+#   tempdf <- data.frame(timepoints, points)
+#   tempdf$ID <- c(i)
+#   tempdf$Temp <- unique(parameters$Temp)
+#   tempdf$model <- "Quadratic model"
+#   plot_df <- rbind(plot_df, tempdf)
+# }
+# 
+# for (i in select_data){
+#   parameters <- subset(fit_parameter, fit_parameter$ID == i)
+#   timepoints <- seq(min(data_raw$Time[data_raw$ID == i]), max(data_raw$Time[data_raw$ID == i]), 1)
+#   points <- cubic(x = timepoints,
+#                   d = parameters$Cubic_intercept[1],
+#                   a = parameters$Cubic_a[1],
+#                   b = parameters$Cubic_b[1],
+#                   c = parameters$Cubic_c[1])
+#   tempdf <- data.frame(timepoints, points)
+#   tempdf$ID <- c(i)
+#   tempdf$Temp <- unique(parameters$Temp)
+#   tempdf$model <- "Cubic model"
+#   plot_df <- rbind(plot_df, tempdf)
+# }
+# 
+# 
+# plot_df$model <- as.factor(plot_df$model)
+# 
+# ggplot(data_raw[data_raw$ID %in% select_data,], aes(x = Time, y = logPopBio)) +
+#   geom_point() +
+#   geom_line(data= plot_df, aes(x = timepoints, y = points, color = model))+
+#   facet_wrap(~ as.factor(Temp), scales = "free")
