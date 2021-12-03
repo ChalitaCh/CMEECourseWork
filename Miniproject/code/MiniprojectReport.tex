@@ -1,0 +1,269 @@
+\documentclass[12pt]{article}
+\usepackage[export]{adjustbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[nottoc]{tocbibind}
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage{lineno, graphicx, float, setspace, csvsimple, booktabs, pdfpages}
+\graphicspath{{../results}}
+
+
+
+\usepackage[style=authoryear, sorting=nyt,eprint=false,backend=bibtex]{biblatex}
+\addbibresource{MiniprojectReport.bib}
+
+
+\setstretch{2}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\textheight}{24cm}
+\setlength{\textwidth}{16cm}
+
+
+\definecolor{myblue}{RGB}{0, 33, 71} 
+\renewcommand{\contentsname}{\textcolor{myblue}{Contents}}
+\renewcommand{\refname}{\textcolor{myblue}{References}}
+
+
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     } %defined fuction for supplement figures
+
+\DeclareUnicodeCharacter{2212}{-}
+\begin{document}
+
+  \vspace{5.5cm}
+
+  \begin{center}
+    {\color{myblue}
+    \textbf{ \large{HOW WELL MECHANISTIC MODELS PERFORM \\ IN BACTERIAL POPULATION GROWTH AND \\ HOW TEMPERATURES AFFECT THE MODEL SELECTION \\ }}}
+    \vspace{15 cm}
+    \textbf{\normalsize{Chalita Chomkatekaew \\ MSc Computational Methods in Ecology and Evolution \\ December 2021 \\ }}
+    \vspace{0.5cm}
+  \end{center}
+
+  \vspace{4.5cm}
+
+  \thispagestyle{empty}
+
+  \newpage
+  
+  \setcounter{secnumdepth}{0}
+
+  \bfseries
+  \tableofcontents
+  \normalfont
+
+  \thispagestyle{empty}
+  
+  \newpage
+  \setcounter{page}{1}
+  \begin{linenumbers}
+  
+ \section{Abstract}
+ 
+ \noindent Microbial organisms are the most abundant organism on the planet. They have numerous implications for many scientific fields, for instance, food safety, biogeochemical conversion, and diseases. However, bacterial growth is yet understood. In the current study, I compared and evaluated the performance of four mathematical models; modified Gompertz, Logistic and two polynomial models to a large dataset of bacteria growth curves. The most frequently model that performed best is the Gompertz model, followed by Logistic, Quadratic and Cubic models, respectively. Different temperatures also result in different model choices where the Gompertz model is preferred in two extreme temperature ranges. Taken together, mechanistic models, particularly the Gompertz model, have the potential to describe and forecast different types of the growth curve, where others perform better in specific growth conditions. It is thus important to note that all models should be used in conjunction with cautions.
+ 
+ \newpage
+
+ \section{Introduction}
+
+  \noindent Prediction of bacterial fitness and dynamics is an imperative tool to understand a role of which microbes in different conditions, ranging from the biogeochemical processes (\cite{schlesinger_biogeochemistry_1997}), food spoilage (\cite{odeyemi_understanding_2020}), to host-health status and diseases (\cite{feng_identifying_2020}). In a resource-limited environment, a normal bacteria growth curve is described in 4 stages; “Lag phase”, “Exponential phase”, “Stationary phase”, and “A mortality phase” (Figure 1). The lag phase is where the bacteria prepare the machinery for proliferation, followed by the exponential phase in which bacteria divide at a constant rate. These two initial phases, thus, give a sigmoidal semi-logarithm curve. The bacteria growth then reaches a plateau once the carrying capacity has been reached. Lastly, the death phase is characterised by the exponential decrease in the bacteria cells (\cite{mckellar_modeling_2004}). However, the death phase is rarely considered in the mathematical models for bacterial growth kinetic, for instance, in the food industry, most food would have been spoiled before the abundance of bacteria reaches the exponential and/or stationary phase. In contrast, bacteria can proliferate in a range of ecological factors. Where temperature is one of the most important factors to control bacteria growth dynamics. Of which the higher temperature could affect the duration of lag phase and growth rate (\cite{bronikowski_evolutionary_2001}). Understanding how temperature affects bacteria growth and the ability to accurately predict the consequences are vital in bacteria adaptations, particularly in food storage and disease severity.
+  
+   \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{Figure_1.pdf}
+    \caption{The bacterial population growth in a close-system. Denote the mortality phase was not shown here.}
+  \end{figure}
+  
+  \noindent Mathematical modelling has become more widely used to understand large and complex mechanisms in biological systems as well as in bacteria growth dynamics (For review, \cite{de_jong_mathematical_2017}). There are two types of models; Mechanistic and phenomenological models. Mechanistic models have biological definitions and attempt to elucidate the mechanisms of the empirical data, however, they require some starting values to fit the models. Whereas the latter type is seeking to describe the relationship between the variables instead with minimum parameters used. Both types of models have been proposed to predict the bacterial growth dynamics, however, mechanistic models such as the Gompertz model are preferred over the phenomenological models owing to the direct inference with biological implications the model can provide (\cite{peleg_microbial_2011}). 
+  
+  \newpage
+  
+  \noindent In this study, I leveraged four existing mathematical models, two mechanistic models; Gompertz (\cite{zwietering_modeling_1990})and Logistic models (\cite{peleg_modeling_1997}), and two phenomenological models (Quadratic and Cubic polynomial models) to assess the model fitness to the published dataset of 285 growth curves as a proof of concept study. Additionally, I aimed to test for correlation between the models and the temperature as a growth condition in an attempt to deduct model preference in each temperature range.
+
+\newpage
+
+\section{Method and Material}
+
+\subsection{Data}
+
+  \noindent The dataset was collected from 10 previously published papers downloaded from a Github repository (\cite{mhasoba_multilingual_2021}). The data includes the growth curves from 45 unique species, and cultured in 17 different temperatures and 18 mediums.
+
+\subsection{Computing Tools}
+  \subsubsection{Data preparation}
+
+  \noindent Data preparation were performed using based \textit{R version 4.1.1} and \textit{Tidyverse} package \textit{version 1.3.1}. The subset data of a single growth curve were characterised using a unique combination of temperature, species, medium, number of replications, and the literature citation. The time points and population abundance that less than zero were removed as they are biologically impossible, followed by the transformation of the population abundance into a log scale.
+  
+  \subsubsection{Mathematical Models}
+  
+  \noindent Mathematical models used in this study are defined in R by the following:
+    
+    \noindent\textbf{Mechanistic Model - Non-linear Least squares}
+
+    \noindent Modified Gompertz model (\cite{zwietering_modeling_1990})
+    
+    \begin{equation}
+        log(N_{t}) = N_{0} + (K - N_{0})e^{-e^{r_{max}exp(1)\frac{t_{lag}-t}{(K-N_{0}log(10)}+1}}
+    \end{equation}
+    
+    \noindent Logistic (Verhurst) model (\cite{peleg_modeling_1997})
+    
+    \begin{equation}
+        N_{t} = \frac{N_{0}Ke^{r_{max}t}}{K + N_{0}(e^{r_{max}t}-1)}
+    \end{equation}
+    
+    \noindent Where \(N_{0}\) is the initial population abundance. \(r_{max}\) is the maximum growth rate and \(K\) is the carrying capacity or the maximum abundance the population can have. While \(N_{t}\) is the population size at time \(t\). Additionally, \(t_{lag}\) is the time taken before, in this study, bacterial population transition to the exponential phase. Note that only the Gompertz model considers \(t_{lag}\) as a parameter.
+    
+    \noindent\textbf{Phenomenological Model}
+    
+    \noindent Quadratic polynomial model
+    
+    \begin{equation}
+        y = ax^{2} + bx + c
+    \end{equation}
+
+    \noindent Cubic polynomial model
+    
+    \begin{equation}
+        y = ax^{3} + bx^{2} + cx + d
+    \end{equation}
+    
+\subsubsection{Model fitting}
+
+\noindent To fit growth models to the prepared data, I used \textit{minpack.lm} package \textit{version 1.2-1} in \textit{R} with nlsLM function to fit the Non-linear least squares models; Gompertz and Logistic models. The starting values were estimated and then sampled to fit the model for 100 permutations to increase the likelihood for more robust and optimised estimation. I then calculate the Akaike Information Criterion (AIC) of each model permutations to select the optimised parameters with minimum AIC value. 
+
+    \begin{equation}
+        AIC = -2log(L(\hat \theta)) + 2K
+    \end{equation}
+    
+\noindent Where \(log(L(\hat \theta))\) is the maximum log-likelihood of the estimated value and K is the number of parameter in each model.
+
+\vspace{0.5cm}
+
+\noindent The linear regression models (Quadratic and Cubic polynomial models) were fitted to each subset data using lm function of based \textit{R stats} package, followed by AIC calculation (Equatuion 5). All the selected parameters and its AIC values were then stored and saved in a file for further analyses. Visualised inspections were also performed to manually check the model performance (Figure S1).
+
+
+\subsubsection{Model selection and analyses}
+
+\noindent The second order derivative of AIC (AICc) were then calculated from AIC obtained previously to correct the bias of the sample size. The model with the most minimum AICc was chosen in each subset data as the best model. I also calculate the Bayesian information criterion or BIC to validate the selected models. To infer the probability of the best model is better than other model tested, Weight Akaike of each model in respective to the best model were calculated. In addition, I then calculated the normalised probability between the best model and second best to find the likelihood of the model chosen (\cite{burnham_model_2002}).
+
+\begin{equation}
+    AICc = AIC + \frac{2K(K + 1}{n - K - 1}
+\end{equation}
+
+\noindent Different between the models
+
+\begin{equation}
+    \Delta AICc_{i} = AIC_{i} - AIC_{min}
+\end{equation}
+
+\noindent Weight Akaike
+
+\begin{equation}
+    W_{i}(AIC) = \frac{exp(-\frac{1}{2}\Delta AICc_{i})}{\sum_{r=1}^R exp(-\frac{1}{2}\Delta AICc_{R}})
+\end{equation}
+
+\noindent Normalised probability
+
+\begin{equation}
+    Prob = \frac{W_{best}(AIC)}{W_{second}(AIC) + W_{best}(AIC)}
+\end{equation}
+
+\subsubsection{Temperature and model selection analyses}
+
+\noindent I dissect the effect of temperatures to model selection. The temperatures are grouped into 4 ranges; 0-10 $^{\circ}$C, 11-20 $^{\circ}$C, 21-30 $^{\circ}$C, 31-40 $^{\circ}$C. The mean AICc and percentage of each model selected in different temperature bins were calculated and visualised. 
+
+\subsubsection{Data visualisation and report}
+
+\noindent Data visualisation was performed in R using ggplot2 package. The report was written in LaTex.
+
+\subsection{Data availability and reproducible}
+
+\noindent The source code and data for this study analyses are available at https://github.com/ChalitaCh/ under CMEECourseWork repository. The instruction to run the code for reproducible analyses is also available at the provided repository.
+
+\newpage
+
+\section{Results}
+
+\subsection{Mechanistic models are preferred}
+
+\noindent The mathematical models were used to fit the unique 285 growth curve to evaluate the fitness of the models across the dataset. Overall, 90\% (n = 256) of the growth curves were able to successfully fit the dataset and used for model selection. Having calculated the AICc score to select the best model, both mechanistic models, Logistic and Gompertz models, generally performed best in comparison with the phenomenological models given the tested dataset (Table 1 and Figure 2A). While the frequency of the best model chosen between the Gompertz and Logistic models are virtually the same, the average AICc score of Gompertz model was the lowest.
+
+\vspace{0.5cm}
+
+\noindent Similarly, the average BIC revealed the parallel outcomes by the Gompertz model had the lowest mean BIC score as well as it was selected as the best model in 154 growth curves (57.9\%). Even though the Logistic model, which had the second-lowest BIC score, the frequency of the model selected as the best model is almost halved in comparison to the model selection using AICc scores (Table 1 and Figure 2A). While the Cubic polynomial model performed the worst out of the 4 models tested when evaluated with the AICc, the Cubic model satisfied the dataset better than the Quadratic model, thus, ranked as the third-best model with BIC scores.
+
+    \begin{table}[H]
+        \vspace{0.5cm}
+        \csvautobooktabular{../results/Overall_models.csv}
+    \caption{The overall selected models with minimum AICc and BIC values, The normalised probability of W(AICc) of each model denoted as MeanProb also illustrated here.}
+    \end{table}
+
+\subsection{High likelihood of selected model is the best model}
+
+\noindent The normalised probability using the Akaike Weight was also performed to assess the likelihood of the selected model is the best model. Consistent with previously observed in the AICc value, the Gompertz model has the highest mean likelihood (P = 0.90) to fit the empirical subset data. Interestingly, despite having fitted to only 17.2 \% of the fitted dataset, the Quadratic and Cubic polynomial models were able to successfully support the data with the mean normalised probability of 0.748 and 0.716, respectively (Figure 3B).
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{Figure_2.pdf}
+    \caption{The overall percentage of chosen models and the normalised probability range of each model. The higher the probability is, the likelihood the model is the best model}
+  \end{figure}
+
+\subsection{Lower temperature range affects the model selection}
+
+\noindent Here, I investigated the effect of temperature on the choice of models based on their goodness of fit. Having grouped the dataset into different temperature bins, the average AICc values of Gompertz model performed best in three temperature ranges. However, the frequency of Gompertz model selected is only in 0-10 $^{\circ}$C and 31-40 $^{\circ}$C. Whereas the Logistic model fitted the growth curve better in a temperature range of 11 – 20 $^{\circ}$C with an average AICc score of -12.28 when compared between the tested models (Table 2). Intriguingly, the Logistic model is the most model chosen in 11-30 $^{\circ}$C (n = 67 out of 126). Despite fewer number of fit to the growth curves, both polynomial models appear to perform better in the temperature at 0-10 $^{\circ}$C in comparison to other temperature ranges (Figure 3).
+
+\vspace{0.5cm}
+
+    \begin{table}[H]
+        \centering
+        \vspace{0.5cm}
+        \csvautobooktabular{../results/Temp_models.csv}
+    \caption{The average AICc and BIC values of models tested between the temperature bins.}
+    \end{table}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{Figure_3.pdf}
+    \caption{The percentage of model with best performance in each temperature range}
+  \end{figure}
+  
+ \section{Discussion}
+ 
+ \noindent Bacterial population growth is a vital mechanism to varieties of scientific fields, where understanding the activity and dynamics of the population could provide insights into many biological questions. However, the growth mechanisms in bacteria are highly complex and not fully understood. Computation modelling and analyses have become increasingly desirable approaches to understand this process where the laboratory experiments are laborious and difficult to mimic the environment in nature. Here, I dissected four different mathematical models to evaluate the performance and fitness of a large dataset of 285 growth curves. In addition, I attempted to assess the effect of temperature ranges on the model selection.
+ 
+ \vspace{0.5cm}
+ 
+ \noindent The models were able to successfully fit to about 90 \% of the dataset, where Gompertz model fits more accurately in the majority of the dataset (41-58 \%), followed by the Logistic model. This is consistent with the model selection using AICc and BIC values. The normalised probability of the model was also calculated to illustrate the confidence of chosen models. (Figure 2) While both polynomial models were able to fit only 13.4 - 21.1 \% of the dataset. The trend of AICc and BIC between the two models are inconsistent. Although both accounting for the goodness of fit, the complexity of the model, as well as the sample size, the development framework of these measurements are different while the BIC penalty term is larger (\cite{wagenmakers_aic_2004}). Further investigation is needed to understand the discrepancy between them.
+ 
+ \vspace{0.5cm}
+ 
+ \noindent In concordance with a previous report (\cite{peleg_microbial_2011}), both Gompertz and Logistic models are preferred than the phenomenological models as 1) its parameters have biological implication rather than seeking to fit the curve to the dataset 2) Both models have an "S-shaped" feature that can accommodate the slow growth of bacteria during the transition between the lag phase and exponential phase. Not only having performed well in the model fitting for bacteria population dynamics, but the Gompertz model is also widely implicated in many biological studies, including the prediction of the tumour cells growth (\cite{benzekry_classical_2014}). In contrast, the defined Logistic model (Equation 2) does not account for the long lag time and, thus, may affect the model fitness to growth curve in bacteria with a slow growth rate. Several researchers attempt to develop the modified logistics regression to account for the long delay before the exponential phase (\cite{oscar_development_2005,koseki_alternative_2012}), however, such modification could be costly to the parameters estimated.
+ 
+ \vspace{0.5cm}
+ 
+ \noindent Temperature is an important factor to modulate the bacteria growth dynamics, particularly to the bacterial physiological. In this study, I briefly investigated the consequences of temperature on model selection. Given the test dataset, Gompertz model described the data best at the upper and lower temperature ranges. On the other hand, Logistic model is more frequently (58 \%, n = 126) selected as the best model in a temperature range of 11-30 $^{\circ}$C (Figure 3). At lower temperatures, the enzyme kinetic is slower, resulting in a longer doubling time. The extreme example is from a bacterium isolated from  Siberian permafrost which doubled in the abundance after culture for 39 days (\cite{bakermans_reproduction_2003}). With the defined function of logistic model, we can thus infer that it is challenging for the model to describe the data sub-optimal temperature for bacterial growth as above-mentioned. However, further investigation to understand the model choice in other temperature ranges is limited as the majority of data is biased towards the lower temperatures.
+ 
+ \section{Conclusion}
+ 
+ \noindent In conclusion, the Gompertz model is preferred and has the best goodness of fit to the given bacterial population data. Whereas the logistic and phenomenological models have the potential to perform well in sub-types of the growth curve. Thus, suitable model selection to various growth trajectories in bacteria is crucial. Universal model development for growth curve to account for multiple factors, such as gene expression and host status, is needed to accurately predict the outcome in a 'real world' setting.
+ 
+ \printbibliography
+
+\end{linenumbers}
+\newpage
+
+\section{Supplementary}
+
+\beginsupplement
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{S1.pdf}
+    \caption{An example of manually inspection of model fitness in the dataset. Here is the \textit{P. fluorescens} growth curves in different temperature range}
+  \end{figure}
+
+ 
+\end{document}

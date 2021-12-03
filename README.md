@@ -22,5 +22,8 @@ Introduction to the R, statistical software. This week, we explored the basic R 
 
 This week, we will look at how Python programming can be used in numerical computing, using numpu and scipy packages. The workflow for more reproducible and automated data analyses across R and Python using subprocess module, followed by the introduction into Jupyter notebook.
 
+## MiniProject
+
+This directory is for MiniProject assignment submission for model fitting of bacterial growth curve. The project uses combination of R, Python, Bash, and LaTex programming languages.
 
 
