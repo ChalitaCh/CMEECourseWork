@@ -26,4 +26,6 @@ This week, we will look at how Python programming can be used in numerical compu
 
 This directory is for MiniProject assignment submission for model fitting of bacterial growth curve. The project uses combination of R, Python, Bash, and LaTex programming languages. Please note that Miniproject 2 is just a copy. Please ignore.
 
+## HPC
 
+Directory for codes, data and log files for HPC assignments
