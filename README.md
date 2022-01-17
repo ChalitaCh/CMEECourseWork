@@ -1,6 +1,15 @@
 # My CMEE Coursework Repository 2021-2022
 
-This repository contains the coursework for my MSc CMEE at Imperial College London.
+This repository contains the coursework for my MSc CMEE at Imperial College London 2021-2022. The details of coursework and lecture note can be referred at https://mhasoba.github.io/TheMulQuaBio/intro.html.
+
+## Environment and softwares
+
+- MacOS Monterey, version  12.1.
+- GNU bash, version 3.2.57
+- Python 3, version 3.8.8
+- R, version 4.1.1
+
+All the packages used in each week assignment were listed on that week's Readme page.
 
 ## Author
 
