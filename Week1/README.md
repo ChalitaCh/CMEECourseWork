@@ -8,7 +8,7 @@ The topics covered in this week including:
 - Version control with Git
 - Scientific documents with *Latex*
 
-All the scripts used Mac OS Big Sur version 11.6. A comprehensive list of all files and scripts within the Week 1 directory is provided below.
+All the scripts used Mac OS Monterey version 12.1. A comprehensive list of all files and scripts within the Week 1 directory is provided below.
 
 ## Code
 

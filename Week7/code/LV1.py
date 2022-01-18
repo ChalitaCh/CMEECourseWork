@@ -40,6 +40,9 @@ resource to consumer biomass
 #Defined function
 
 def dCR_dt(pops, t=0):
+    """ Function for The Lotka-Volterra model
+
+    A predator-prey system in two-dimensional space"""
     
     R = pops[0] #call the first element of pops as R
     C = pops[1] #call the second element of pops as C
@@ -58,6 +61,9 @@ e = 0.75
 t = np.linspace(0, 15, 1000) #sub-divisions of time to 1000 points
 
 def main(argv):
+
+    """Main function to integrate the LV function defined previously and data visualisation
+    to illustrate the consumer-resource population dynamics"""
 
     #Set the initial conditions for the two populations
 

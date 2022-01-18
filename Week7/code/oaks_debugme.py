@@ -11,6 +11,7 @@ __version__ = '0.0.1'
 ## Imports ##
 
 import csv
+from os import CLD_CONTINUED
 import sys
 import doctest
 import re
@@ -28,6 +29,7 @@ def is_an_oak(name):
 
     >>> is_an_oak('Quercus robur')
     True
+
     """
     return True if re.search(r'\bquercus\b', name, re.IGNORECASE ) else False #Checking if the matched not a typo
 
@@ -43,8 +45,6 @@ def main(argv):
     g = open('../data/JustOaksData.csv','w')
     taxa = csv.reader(f)
     csvwrite = csv.writer(g)
-
-    #oaks = set() #not use...removed
     
     for row in taxa:
         print(row)
@@ -53,6 +53,9 @@ def main(argv):
         if is_an_oak(row[0]):
             print('FOUND AN OAK!\n')
             csvwrite.writerow([row[0],row[1]])
+
+    #oaks = set() #not use...removed
+
     f.close() #close the file opened
     g.close()    
 

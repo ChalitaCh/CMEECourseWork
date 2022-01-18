@@ -1,4 +1,0 @@
-The best alignment
-CAATTCGGAT
-ATCGCCGGATTACGGG
-Best score:5

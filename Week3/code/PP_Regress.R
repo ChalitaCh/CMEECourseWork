@@ -88,7 +88,6 @@ P_Regress <- ggplot(data = MyDF, aes(x = Prey.mass, y = Predator.mass,
   ylab("Predator mass in grams") + # change the y axis label
   theme(aspect.ratio = 0.5) # resize the plot illustrated
 
-
 # save the plot to the result directory
 
 ggsave("../results/PP_Regress_plot.pdf", plot = P_Regress ,

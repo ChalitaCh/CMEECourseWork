@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Some functions exemplifying the use of control statements"""
+"""The functions exemplifying the use of control statements"""
 
 __author__ = 'Chalita Chomkatekaew (chalita.chomkatekaew20@imperial.ac.uk)'
 __version__ = '0.0.1'
@@ -37,7 +37,9 @@ def even_or_odd(x=0): #if not specificed, x should take value 0.
         return "%d is Even!" % x
     return "%d is Odd!" % x
 
+## Main function
 def main(argv):
+    """Invoke the function defined above with default variables"""
     print(even_or_odd(22))
     print(even_or_odd(33))
 

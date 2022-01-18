@@ -9,9 +9,7 @@ __author__ = 'Chalita Chomkatekaew chalita.chomkatekaew20@ic.ac.uk'
 __version__ = '0.0.1'
 
 
-##############################################################################
-# loops vs. list comprehensions: which is faster?
-##############################################################################
+""" loops vs. list comprehensions: which is faster? """
 
 iters = 100000
 
@@ -21,9 +19,7 @@ from profileme import my_squares as my_squares_loops
 
 from profileme2 import my_squares as my_squares_lc
 
-##############################################################################
-# loops vs. the join method for strings: which is faster?
-##############################################################################
+""" loops vs. the join method for strings: which is faster?"""
 
 mystring = "my string"
 

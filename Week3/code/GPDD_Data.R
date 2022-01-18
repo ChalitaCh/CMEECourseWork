@@ -9,8 +9,6 @@ rm(list = ls())
 #packages
 require(maps)
 require(ggplot2)
-require(viridisLite)
-require(viridis)
 
 #load dataset
 
@@ -28,13 +26,10 @@ GPDD <- ggplot() +
   geom_polygon(data = world, aes(x = long, y = lat, group = group), 
                fill= "grey", alpha = 0.3) +
   geom_point(data = gpdd, aes(x = long, y =lat, colour = common.name), size = 2, alpha = 0.8) +
-  scale_colour_viridis(discrete = TRUE) +
   theme_void() + coord_map(xlim=c(-180,180)) +
   theme(legend.position = "none") 
 
-GPDD
-
 #Although this is a global database, the majority of the data was collected from the North
 #America and European countries, particularly from the UK and West American states. 
-#Whereas the database is lacking information from South America, Africa, Asia and Australasia continents.
+#While the database is lacking information from South America, Africa, Asia and Australasia continents.
 

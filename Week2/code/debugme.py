@@ -6,6 +6,7 @@ __author__ = 'Chalita Chomkatekaew (chalita.chomkatekaew20@imperial.ac.uk)'
 __version__ = '0.0.1'
 
 def buggyfunc(x):
+    """Function to catch specific types of errors using try and except"""
     y = x
     for i in range(x):
         try:
@@ -19,4 +20,5 @@ def buggyfunc(x):
             print(f"OK; x = {x}, y = {y}, z = {z};")
     return z
 
+#call the function
 buggyfunc(20)

@@ -24,13 +24,18 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 
 # Hints: use the "print" command! You can use list comprehensions!
 
+# Conventional loop
 def read_table():
+    """Function to loop and print into the desired format"""
     for name in birds:
         print("Latin name: ", name[0])
         print("Common name: ", name[1])
         print("Mass: ", name[2])
     return None
 
+#run and print the output
 print(read_table())
+
+#List comprehension methods
 
 test = [print("Latin name: %s \n Common name: %s \n Mass: %s" % (name[0], name[1], name[2]))for name in birds]

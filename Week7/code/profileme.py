@@ -10,18 +10,21 @@ __author__ = 'Chalita Chomkatekaew chalita.chomkatekaew20@ic.ac.uk'
 __version__ = '0.0.1'
 
 def my_squares(iters):
+    """Append the strings"""
     out = []
     for i in range(iters):
         out.append(i ** 2)
     return out
 
 def my_join(iters,string):
+    """Join the strings"""
     out = ''
     for i in range(iters):
         out += string.join(", ")
     return out
 
 def run_my_func(x, y):
+    """To run the functions defined above"""
     print(x, y)
     my_squares(x)
     my_join(x, y)

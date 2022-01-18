@@ -15,7 +15,7 @@ import csv
 #seq2 = "ATCGCCGGATTACGGG"
 #seq1 = "CAATTCGGAT"
 
-## import the input sequences from a csv file
+""" Import the input sequences from a csv file """
 print("Aligning the DNA sequences....")
 
 x = "../data/Exampleseq.csv" #read in the default sequences
@@ -26,7 +26,7 @@ with open(x, "r") as seq:
         temp.append(row[1])
 
 
-#Define the sequence seq1 and seq2 for the following analyses
+""" Define the sequence seq1 and seq2 for the following analyses """
 
 print()
 print("This is a first input sequence: %s \n This is a second input sequence: %s" % (temp[0], temp[1]) )
@@ -36,9 +36,10 @@ seq1 = temp[0]
 seq2 = temp[1]
 
 ## function
-# A function that computes a score by returning the number of matches starting
-# from arbitrary startpoint (chosen by user)
+
 def calculate_score(s1, s2, l1, l2, startpoint): # it will run with the startpoint of 0 if not specify
+    """A function that computes a score by returning the number of matches starting
+    from arbitrary startpoint (chosen by user)"""
     matched = "" # to hold string displaying alignements
     score = 0
     for i in range(l2):
@@ -57,8 +58,8 @@ def calculate_score(s1, s2, l1, l2, startpoint): # it will run with the startpoi
 
     return score
 
-# Assign the longer sequence s1, and the shorter to s2
-# l1 is length of the longest, l2 that of the shortest
+"""Assign the longer sequence s1, and the shorter to s2
+l1 is length of the longest, l2 that of the shortest """
 
 l1 = len(seq1)
 l2 = len(seq2)
@@ -85,11 +86,13 @@ print("Best score:", my_best_score)
 
 # Export the output to a file "best_align_seq_result.txt"
 output = open("../results/best_align_seq_result.txt", "w")
-output.write("The best alignment" + "\n" + str(my_best_align) + "\n" + str(s1) + "\n" + "Best score:" + str(my_best_score))
+output.write("The best alignment" + "\n" + str(my_best_align) + "\n" + str(s1) + "\n" + "Best score:" + str(my_best_score) + "\n")
 output.close()
 
 
+## Main function
 def main(argv):
+    """When the program successfully run, print..Done!"""
     print("Done!")
     return None
 

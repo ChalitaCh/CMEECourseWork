@@ -9,14 +9,12 @@ The topics covered in this week including:
 - Simulations with R programming language and how to maximise the efficient using vectorisation
 - Find and fix errors in R by debugging
 
-All the scripts used Mac OS Big Sur version 11.6. A comprehensive list of all files and scripts within the Week 3 directory is provided below.
+All the scripts used MacOS Monterey, version  12.1. and R version 4.1.1. A comprehensive list of all files and scripts within the Week 3 directory is provided below.
 
 ## Required R packages
 
 - ggplot2
 - Tidyverse
-- viridisLite
-- viridis
 - broom
 
 ## Code

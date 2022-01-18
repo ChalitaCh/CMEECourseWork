@@ -55,6 +55,7 @@ def find_all_primes(x = 22):
     return allprimes
     
 def main(argv):
+    """Main function, to call the functions with default values"""
     print(even_or_odd(22))
     print(even_or_odd(33))
     print(largest_divisor_five(120))

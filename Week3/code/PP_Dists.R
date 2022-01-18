@@ -10,8 +10,6 @@ rm(list = ls())
 
 require(ggplot2)
 require(tidyverse)
-require(viridisLite)
-require(viridis)
 
 #load dataset
 
@@ -40,7 +38,6 @@ MyDF$ratioPreyPredator <- MyDF$logPrey.mass/MyDF$logPredator.mass
 
 Prey <- ggplot(MyDF, aes(x = logPrey.mass, fill = Type.of.feeding.interaction)) +
   geom_density(adjust = 1.5) +
-  scale_fill_viridis(discrete = TRUE) +
   scale_x_continuous(labels = function(x) format(x, scientific = TRUE)) +
   scale_y_continuous(labels = function(x) format(x, scientific = TRUE)) +
   facet_grid(Type.of.feeding.interaction~.) +
@@ -49,11 +46,11 @@ Prey <- ggplot(MyDF, aes(x = logPrey.mass, fill = Type.of.feeding.interaction)) 
   ylab("Density") +
   theme(legend.position = "none")
 
+
 #plot distribution of Log Predator Mass
 
 Pred <- ggplot(MyDF, aes(x = logPredator.mass, fill = Type.of.feeding.interaction)) +
-  geom_density(adjust = 1.5) +
-  scale_fill_viridis(discrete = TRUE) +
+  geom_density(adjust = 1.5)+
   scale_x_continuous(labels = function(x) format(x, scientific = TRUE)) +
   scale_y_continuous(labels = function(x) format(x, scientific = TRUE)) +
   facet_grid(Type.of.feeding.interaction~.) +
@@ -62,11 +59,10 @@ Pred <- ggplot(MyDF, aes(x = logPredator.mass, fill = Type.of.feeding.interactio
   ylab("Density") +
   theme(legend.position = "none")
 
-#plot the distribution of the ratio btw them
+#plot the distribution of the ratio between them
 
 Ratio <- ggplot(MyDF, aes(x = ratioPreyPredator, fill = Type.of.feeding.interaction)) +
   geom_density(adjust = 1.5) +
-  scale_fill_viridis(discrete = TRUE) +
   scale_x_continuous(labels = function(x) format(x, scientific = TRUE)) +
   scale_y_continuous(labels = function(x) format(x, scientific = TRUE)) +
   facet_grid(Type.of.feeding.interaction~.) +
@@ -74,6 +70,7 @@ Ratio <- ggplot(MyDF, aes(x = ratioPreyPredator, fill = Type.of.feeding.interact
   xlab("Ratio of Log Prey Mass/Log Predator Mass") +
   ylab("Density") +
   theme(legend.position = "none")
+
 
 #summarise the mean and median of different feeding types 
 
