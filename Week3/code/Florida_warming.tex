@@ -13,37 +13,51 @@
  bottom=5mm
  }
 
-\title{Is Florida getting warmer?}
-\author{Chalita Chomkatekaew}
-\date{31$^{st}$ October 2021}
+\title{Is Florida getting warmer? \vspace{-0.5em}} 
+\author{Chalita Chomkatekaew 31$^{st}$ October 2021}
+%\predate{}
+%\postdate{}
+\date{}
 
 \begin{document}
 
 \maketitle
-        
-        Global warming is an gradula increase of overall earth's temperature due to human activities since the Pre-industrial period, primarily fossil fuel burning.
-        The long term effects to the global climate change are various and interconnected, ranging from the increase in global surface temperature, more drought to the melting of the ice caps in the arctic.
-        While there are collective efforts to reduce the effects of global warming, the consequences are irreversible, and will worsen in the decades to come.
-        In this report, I investigated a dataset of annual temperature from Key West in Florida, USA collected over 10 years (Figure 1).
-        We aimed to assess the correlation between the increased in temperature in Florida and time.
-        
-        \begin{figure}[h]
-            \centering
-            \includegraphics[scale = 0.6]{DistributionFlorida}
-            \caption{Distribution of the annual temperatures in Florida during 1901-2000}
-            \label{fig:DistributionFlorida1}
-        \end{figure}
 
-    The correlation coefficient test between the temperature measured each year was performed, giving R$^{2}$ of 0.53, suggesting moderate positive correlation.
-    To account for the dependent relationship in sampling with successive time series, I performed a correlation coefficient test with 100000 permutations to assess the robustness of the test performed.
-    The probability of the random correlation tests are higher or equal to the correlation coefficient observed gave the P-value of less than 0.05 (Figure 2).
-    Despite the moderate magnitude of correlation, the relationship between the temperature and time in Florida from 1901 - 2000 is significant.
+\section{Introduction \vspace{-0.5em}}
+        
+        Florida has a unique and rich biodiversity in North America \cite{blaustein_biodiversity_2008}. Global warming is an gradula increase of overall earth's temperature due to human activities since the Pre-industrial period, primarily fossil fuel burning. The long term effects to the global climate change can threaten the Florisa's unique ecosystem for instance, the increase in sea levels, and severe storms. While there are collective efforts to reduce the effects of global warming, the consequences are irreversible, for instance, increased susceptibility to the disease in \textit{Dendrogyra cylindrus} in thermal stress \cite{jones_temperature_2021}.  In this report, I investigated a dataset of annual temperature from Key West, Florida collected over 10 years (Figure 1). We aimed to assess the correlation of Florida's annual temperature over time. 
+        
+\section{Methods \vspace{-0.5em}}
+
+		The correlation coefficient test between the temperature measured each year was performed using Sperman's correlation coefficient to test for monotonic relationships between the variables. To account for the dependent relationship in sampling with successive time series, I performed a correlation coefficient test with 100,000 permutations to access the robustness of the test performed. The statistical tests and data visualisation were done using R version 4.1.1.
+		
+\section{Results}
+     The correlation coefficient of Florida's annual temperature tested suggested moderate positive correlation with time (The observed correlation coefficient R$^{2}$ is 0.53) While the probability of the random correlation tests are higher or equal to the correlation coefficient observed gave the P-value of less than 0.05 (Figure 2). 
+           
+        \begin{figure}[htbp]
+        \centering
+        \begin{minipage}{.4\textwidth}
+        	\centering
+        	\includegraphics[scale = 0.55]{DistributionFlorida.pdf}
+        	\caption{Distribution of the annual \newline temperatures in Florida during 1901-2000}
+        	\label{fig:DistributionFlorida1}
+        \end{minipage}%
+    	\begin{minipage}{.4\textwidth}
+			\centering
+    		\includegraphics[scale = 0.55]{PermuCorCoeff_Florida.pdf}
+    		\caption{Distribution of the randomised \newline correlation coefficient tests. The observed correlation coefficient is annotated in blue dashed line}
+    		\label{fig:PermuCorCoeff_Florida1}
+    	\end{minipage}
+		\end{figure}\vspace{-1.0em}
+
+
     
-        \begin{figure}[h]
-            \centering
-            \includegraphics[scale = 0.6]{PermuCorCoeff_Florida}
-            \caption{Distribution of the randomised correlation coefficient tests. The observed correlation coefficient is annotated in red dashed line}
-            \label{fig:PermuCorCoeff_Florida1}
-        \end{figure}
+\section{Discussion}
+    
+    Despite the moderate magnitude of correlation, the relationship between the temperature and time in Florida from 1901 - 2000 is significant, however, the impact of climate changes in Florida's ecosystems as a whole is yet to be elucidated. Thus, better understanding the effect of global warming in Florida will provide valuable information in resource management and to stakeholders, in efforts to protect home of many wildlifes and unique biodiversity. 
+    
+	\bibliographystyle{plain}
+
+	\bibliography{Florida_warming}
 
 \end{document}

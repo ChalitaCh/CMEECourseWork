@@ -67,8 +67,9 @@ data <- as.data.frame(CorCoeff.test)
 Florida <- ggplot(ats, aes(x = Year, y = Temp))+
   geom_point() +
   ylab("Temperature")+
-  ggtitle("Temperature in Florida from 1901 to 2000") +
-  theme_bw()
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        aspect.ratio = 1)
 
 
 #Plot the density graph of the permutation tests
@@ -77,14 +78,16 @@ CorPlot <- ggplot(data, aes(x=CorCoeff.test))+
                position = "identity") +
   xlim(-0.6, 0.6)+
   geom_vline(xintercept = CorCoeff, #Illustrate the observed Correlation coefficient
-             colour = "red", 
+             colour = "blue", 
              linetype = "dashed")+
-  annotate(geom = "text", x = 0.38, y = 3,size = 2,
-           label = "Observed cor = 0.53") +
+  annotate(geom = "text", x = 0.38, y = 3,size = 3,
+           label = paste("Observed cor =","\n", round(CorCoeff,digits = 2))) +
   xlab("Permutation test of correlation coefficient between Florida temp/year ") +
-  ylab("Frequency") +
+  ylab("Density") +
   theme_bw()+
-  theme(aspect.ratio = 1)
+  theme(panel.grid = element_blank(),
+        aspect.ratio = 1)
+
 
 #Save the plot into a file
 
