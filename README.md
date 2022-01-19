@@ -1,6 +1,6 @@
 # My CMEE Coursework Repository 2021-2022
 
-This repository contains the coursework for my MSc CMEE at Imperial College London 2021-2022. The details of coursework and lecture note can be referred at https://mhasoba.github.io/TheMulQuaBio/intro.html.
+This repository contains the coursework for my MSc CMEE at Imperial College London 2021-2022. The details of coursework and lecture note can be referred [here](https://mhasoba.github.io/TheMulQuaBio/intro.html).
 
 ## Environment and softwares
 
