@@ -14,6 +14,8 @@ All the scripts used MacOS Monterey, version  12.1. and Python version 3.8.8. A 
 
 - MyExampleScript.py
 - align_seqs.py - Script for aligning the sequence with the input Myexampleseq.csv
+- align_seqs_fasta.py - take any two fasta sequences to be aligned as an input
+- align_seqs_fasta.py - Take any two fasta sequences to be aligned as an input and return the best alignment
 - basic_csv.py - Script on how to handling the csv file in Python
 - basic_io1.py - Script on how to import the data from input as a simple text file
 - basic_io2.py - Script on how to create and write an outout file
@@ -39,6 +41,10 @@ All the scripts used MacOS Monterey, version  12.1. and Python version 3.8.8. A 
 - Exampleseq.csv - input for align_seq.py
 - bodymass.csv - output from basic_csv.py
 - testcsv.csv - input for basic_csv.py
+- 407228326.fasta - an example sequence in fasta format
+- 407228412.fasta - an example sequence in fasta format
+- seq1.fasta - a fasta sequence used as a default input
+- seq2.fasta - a fasta sequence used as a default input
 ## Results
 
 An empty directory for the output files

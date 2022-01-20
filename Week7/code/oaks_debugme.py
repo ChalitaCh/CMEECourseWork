@@ -31,7 +31,7 @@ def is_an_oak(name):
     True
 
     """
-    return True if re.search(r'\bquercus\b', name, re.IGNORECASE ) else False #Checking if the matched not a typo
+    return name.lower().strip().startswith('quercus ') #Checking if the matched not a typo
 
 ## Main function ##
 

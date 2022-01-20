@@ -13,7 +13,7 @@
 #Define a function to calculate the tree height
 
 TreeHeight <- function(degrees, distance){ 
-            radians <- degrees * pi/ 180
+            radians <- (degrees * pi)/ 180
             Tree.Height <- distance * tan(radians)
 }
 
@@ -28,9 +28,7 @@ main <- function(){
   output_file <- tools::file_path_sans_ext(basename(filename)) #get a file name with no extension
   output_path <- paste("../results/",output_file,"_treeheights.csv", sep = "") # create a new file path with new name
   write.csv(Data, output_path, row.names = FALSE) #write a csv file
+
 }
  
 main()  #call the main function
-
-
-

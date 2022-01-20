@@ -17,6 +17,7 @@ All the scripts used MacOS Monterey, version  12.1. and Python version 3.8.8. A 
 - TestR.R - test R script file
 - TestR.py - An example script on how subprocess works
 - oaks_debugme.py - Missing oaks practical
+- grp_oaks_debugme.py - Groupwork practical to search for oaks in a given dataset while handling for slight typos
 - profileme.py - Illustration on how profiling in python works
 - profileme2.py - Comparison of alternative approaches and the impact on computational speed
 - timetime.py - A quick profiling with timeit module

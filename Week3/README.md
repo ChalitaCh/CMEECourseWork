@@ -30,6 +30,10 @@ All the scripts used MacOS Monterey, version  12.1. and R version 4.1.1. A compr
 - DataWrangTidy.R - Data wrangling using Tidyverse package
 - Florida_warming.R - A Florida practical
 - Florida_warming.tex - A Latex file of the Florida practical report
+- Florida_warming.bib - A Bibliography of the Florida practical report
+- Floridabiblio.bib - A Bibliography for the groupwork report on TAutoCorr
+- get_TreeHeight.R - A groupwork practical to calculate the tree height from user input dataset in R
+- get_TreeHeight.py - A groupwork practical to calculate the tree height from user input dataset in Python
 - Girko.R - How to plot two dataframes together and visualisation
 - GPDD_Data.R - How to visualise a mapped data.
 - MyBars.R - How to annotate the plot in ggplot2 package
@@ -37,7 +41,10 @@ All the scripts used MacOS Monterey, version  12.1. and R version 4.1.1. A compr
 - PlotLin.R - How to display mathematical equation
 - PP_Dists.R - Body mass distribution practical
 - PP_Regress.R - Regression practical
+- PP_Regress_loc.R - Groupwork practical to calculate Linear regression on subsets of data
 - preallocate.R - Comparision of the pre-allocation and non-allocation of e.g. vector in system run time
+- TAutoCorr.R - Calculate the correlation between the successive years to analyse annual temperature of Florida
+- TAutoCorr.text - A Latex file of TAutoCorr practical
 - R_conditionals.R - Functions with conditions
 - Ricker.R - A script for Ricker model simulation
 - sample.R - An example script for R functions

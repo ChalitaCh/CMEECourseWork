@@ -26,4 +26,4 @@ TreeHeight <- function(degrees, distance){
         }
    
 TreeData$Tree.Height.m <- TreeHeight(Tree.degrees, Tree.distance)
-write.csv(TreeData, "../results/TreeHts.csv")
+write.csv(TreeData, "../results/TreeHts.csv",row.names = F)
