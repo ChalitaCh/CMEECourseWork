@@ -69,6 +69,11 @@ Data required for the above scripts
 
 An empty directory for the output files
 
+## Writeup
 
+PDF files of reports which compiled from the Latex files given in the code directory
+
+- Florida_warming.pdf 
+- TAutoCorr.pdf
 
  
