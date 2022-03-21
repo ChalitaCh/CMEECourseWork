@@ -39,7 +39,6 @@ Spatial Analyses and Geographic Information Systems (GIS). Introduction of GIS d
 
 Genomic and Bioinformatics. Introduction to population genomic data, and the theory and computational methologies in inference of past population expansions and contrations from genomic data. The effect of migrations towards genomic variation and natural selection.
 
-
 ## Week 7
 
 This week, we will look at how Python programming can be used in numerical computing, using numpu and scipy packages. The workflow for more reproducible and automated data analyses across R and Python using subprocess module, followed by the introduction into Jupyter notebook.
@@ -51,3 +50,7 @@ This directory is for MiniProject assignment submission for model fitting of bac
 ## HPC
 
 Directory for codes, data and log files for HPC assignments
+
+## Proposal
+
+The detailed information about the MSc thesis proposal. The proposal was written in Latex.
