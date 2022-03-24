@@ -1,6 +1,6 @@
 # Project proposal
 
-The proposal is for the project entitled "Evolutionary trajectories of antibiotic resistance genes of *Burkholderia pseudomallei*", an environmental bacteria that cause a neglected infectious disease particular in Asia and America. The proposal is written in *Latex* which its pdf version is also available.
+The proposal is for the project entitled "Evolutionary trajectories of antibiotic resistance genes in *Burkholderia pseudomallei*", an environmental bacteria that cause a neglected infectious disease called "Melioidosis" particular in Asia and Australia. The proposal is written in *Latex* which its pdf version is also available.
 
 # Contents
 
